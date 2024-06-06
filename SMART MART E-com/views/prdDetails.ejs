@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dtls</title>
+    <link rel="stylesheet" href="../stylesheets/styleDtl.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/x-icon" href="../images/Brown Cart Online Shop Icon Modern Logo.png">
+</head>
+<body>
+  <header class="section-navbar">
+    <section class="top_txt">
+      <div class="head container">
+        <div class="head_txt">
+          <!-- <p>Free shipping, 30-day return or refund guarantee.</p> -->
+          <h2 style="color: white;">Welcome: <strong style="color: rgb(253, 158, 35);"><%=  locals.username %></strong></h2>
+        </div>
+        <div class="sing_in_up">
+          <% if( locals.username ){   %>
+           <form action="http://localhost:3000/logout" method="post">
+            <button class="add-to-cart-button">Logout</button>
+          </form>
+        <%   } else{   %>
+           <a href="http://localhost:3000/login "><button class="add-to-cart-button">Login</button></a>
+          <a href="http://localhost:3000/register "><button class="add-to-cart-button">Register</button></a>
+       <%  }  %>
+          
+          
+        </div>
+        
+      </div>
+    </section>
+    <div class="container">
+      <div class="navbar-brand">
+        <a href="/">
+          <img
+          src="../images/smart5.png"
+            alt="Smart Mart eCommerce logo"
+            class="logo"
+            width="80%"
+            height="auto"
+          />
+        </a>
+      </div>
+      
+
+
+   
+    
+    
+
+
+
+      <nav class="navbar">
+        <ul>
+          <li class="nav-item">
+            <a href="/" class="nav-link">Home</a>
+          </li>
+          <%  if(locals.username==="admin"){   %>
+                 <li class="nav-item">
+            <a href="/admin-panel" class="nav-link">Admin</a>
+          </li>   
+        <%  }else{   %>
+          <li class="nav-item">
+            <a href="/my-orders" class="nav-link">My orders</a>
+          </li> 
+
+     <%   }  %>
+            
+          <!-- <li class="nav-item">
+            <a href="/all-products" class="nav-link">products</a>
+          </li> -->
+          <li class="nav-item">
+            <a href="/about" class="nav-link">about</a>
+          </li>
+          <li class="nav-item">
+            <a href="/contact-us" class="nav-link">contact</a>
+          </li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header> 
+    <!-- start of main product section -->
+    <div class="main">
+        <div class="images">
+            <img class="image" src="../images/uploads/" alt="">
+        </div>
+        <div class="dtls">
+            <div class="cmpy">
+                <p class="company"></p>
+            </div>
+            <div class="namediv">
+            <p class="prdName"></p>
+            </div>
+            <div class="rating">
+                <i class="fa-solid fa-star fa-2xl" style="color: #FFD43B;"></i>
+                <i class="fa-solid fa-star fa-2xl" style="color: #FFD43B;"></i>
+                <i class="fa-solid fa-star fa-2xl" style="color: #FFD43B;"></i>
+                <i class="fa-solid fa-star fa-2xl" style="color: #FFD43B;"></i>
+                <i class="fa-solid fa-star fa-2xl" style="color: #FFD43B;"></i>
+            </div>
+            <div class="pricediv">
+            <p class="price"></p>
+            </div>
+            <div class="stockdiv">
+            <p class="stock"></p>
+            </div>
+            <div class="btnBuy">
+              <a class="btnbuy" href="/order/">  <button class="add-to-cart-button">
+                    <i class="fa-solid fa-cart-shopping"></i> Buy Now
+                  </button></a>
+            </div>
+            <div class="descriptiondiv">
+            <p class="prdDescription"></p>
+            </div>
+            <div class="desdtl">
+                <p class="descriptionDtl"></p>
+            </div>
+        </div>
+    </div>
+    <!-- ========== Start footer Section ========== -->
+    <footer class="section-footer">
+        <div class="footer-container container">
+          <div class="content_1">
+            <img src="./images/smart4.png" alt="logo" />
+            <p>
+              Welcome to Smart Mart EcomStore, your ultimate destination for
+              cutting-edge gadgets!
+            </p>
+            <img src="https://i.postimg.cc/Nj9dgJ98/cards.png" alt="cards" />
+          </div>
+          <div class="content_2">
+            <h4>SHOPPING</h4>
+            <a href="#">Computer Store</a>
+            <a href="#">Laptop Store</a>
+            <a href="#">Accessories</a>
+            <a href="#">Sales & Discount</a>
+          </div>
+          <div class="content_3">
+            <h4>Experience</h4>
+            <a href="./contact.html">Contact Us</a>
+            <a href="" target="_blank">Payment Method</a>
+            <a href="" target="_blank">Delivery</a>
+            <a href="" target="_blank">Return and Exchange</a>
+          </div>
+          <div class="content_4">
+            <h4>NEWSLETTER</h4>
+            <p>Be the first to know about new<br />arrivals, sales & promos!</p>
+            <div class="f-mail">
+              <input type="email" placeholder="Your Email" />
+              <i class="bx bx-envelope"></i>
+            </div>
+            <hr />
+          </div>
+        </div>
+        <div class="f-design">
+          <div class="f-design-txt">
+            <p>Design and Code by Smart Mart</p>
+          </div>
+        </div>
+      </footer>
+
+
+
+
+
+    <script>
+
+      
+        const prdName=document.querySelector(".prdName");
+        const prdid=document.querySelector(".prdid");
+        const prdCompany=document.querySelector(".company");
+        const prdDescription=document.querySelector(".prdDescription");
+        const prdImage=document.querySelector(".image");
+        const prdPrice=document.querySelector(".price");
+        const prdStock=document.querySelector(".stock");
+        const prdDtl=document.querySelector(".descriptionDtl");
+        const title = document.querySelector("title")
+        let btnbuy = document.querySelector(".btnbuy")
+    
+
+        const urlparams=new URLSearchParams(window.location.search);
+        const name= urlparams.get("name");
+        const image= urlparams.get("image");
+        const description= urlparams.get("description");
+        const price= urlparams.get("price");
+        const stock= urlparams.get("stock");
+        const dtl= urlparams.get("detail");
+        const id = urlparams.get("_id")
+        // console.log(id)
+        btnbuy.href+=id
+        const company= urlparams.get("brand");
+        title.textContent=name
+        prdDtl.textContent=dtl
+        prdName.textContent=name;
+        prdDescription.textContent=description;
+        prdImage.src+=image;
+        prdPrice.textContent=`Rs.${price}`;
+        prdStock.textContent=`Stock Available: ${stock}`;
+        prdCompany.textContent=`Brand: ${company}`;
+    </script>
+</body>
+</html>

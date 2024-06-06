@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="../stylesheets/style.css">
+  <link rel="icon" type="image/x-icon" href="../images/Brown Cart Online Shop Icon Modern Logo.png">
+  <style>
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    /* Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
+    /* Body Styles */
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      /* min-height: 100vh; */
+    }
+    /* Contact Form Styles */
+    .contact-form {
+      background-color: #ffffff;
+      max-width: 500px;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      margin-top: 50px;
+    }
+    .contact-form:hover {
+      transform: translateY(-5px);
+    }
+    .contact-form h2 {
+      margin-bottom: 20px;
+      font-size: 28px;
+      color: #333333;
+      text-align: center;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: border-color 0.3s ease;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: #007bff;
+    }
+    .contact-form textarea {
+      resize: none;
+    }
+    .contact-form button {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background-color: #007bff;
+      color: #ffffff;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .contact-form button:hover {
+      background-color: #0056b3;
+    }
+    /* Social Icons */
+    .social-icons {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .social-icons a {
+      color: #007bff;
+      font-size: 24px;
+      margin: 0 10px;
+      transition: color 0.3s ease;
+    }
+    .social-icons a:hover {
+      color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <header class="section-navbar">
+    <section class="top_txt">
+      <div class="head container">
+        <div class="head_txt">
+          <!-- <p>Free shipping, 30-day return or refund guarantee.</p> -->
+          <h2 style="color: white;">Welcome: <strong style="color: rgb(253, 158, 35);"><%=  locals.username %></strong></h2>
+        </div>
+        <div class="sing_in_up">
+          <% if( locals.username ){   %>
+           <form action="http://localhost:3000/logout" method="post">
+            <button class="add-to-cart-button">Logout</button>
+          </form>
+        <%   } else{   %>
+           <a href="http://localhost:3000/login "><button class="add-to-cart-button">Login</button></a>
+          <a href="http://localhost:3000/register "><button class="add-to-cart-button">Register</button></a>
+       <%  }  %>
+          
+          
+        </div>
+        
+      </div>
+    </section>
+    <div class="container">
+      <div class="navbar-brand">
+        <a href="/">
+          <img
+          src="../images/smart5.png"
+            alt="Smart Mart eCommerce logo"
+            class="logo"
+            width="80%"
+            height="auto"
+          />
+        </a>
+      </div>
+      
+
+
+   
+    
+    
+
+
+
+      <nav class="navbar">
+        <ul>
+          <li class="nav-item">
+            <a href="/" class="nav-link">Home</a>
+          </li>
+          <%  if(locals.username==="admin"){   %>
+                 <li class="nav-item">
+            <a href="/admin-panel" class="nav-link">Admin</a>
+          </li>   
+        <%  }else{   %>
+          <li class="nav-item">
+            <a href="/my-orders" class="nav-link">My orders</a>
+          </li> 
+
+     <%   }  %>
+            
+          <!-- <li class="nav-item">
+            <a href="/all-products" class="nav-link">products</a>
+          </li> -->
+          <li class="nav-item">
+            <a href="/about" class="nav-link">about</a>
+          </li>
+          <li class="nav-item">
+            <a href="/contact-us" class="nav-link">contact</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+<div class="contact-form">
+  <h2>Contact Us</h2>
+  <form action="/message" method="post">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+</div>
+
+<footer class="section-footer">
+  <div class="footer-container container">
+    <div class="content_1">
+      <img src="./images/smart5.png" alt="logo" />
+      <p>
+        Welcome to Smart Mart EcomStore, your ultimate destination for
+        cutting-edge gadgets!
+      </p>
+      <img src="https://i.postimg.cc/Nj9dgJ98/cards.png" alt="cards" />
+    </div>
+    <div class="content_2">
+      <h4>SHOPPING</h4>
+      <a href="#">Computer Store</a>
+      <a href="#">Laptop Store</a>
+      <a href="#">Accessories</a>
+      <a href="#">Sales & Discount</a>
+    </div>
+    <div class="content_3">
+      <h4>Experience</h4>
+      <a href="./contact.html">Contact Us</a>
+      <a href="" target="_blank">Payment Method</a>
+      <a href="" target="_blank">Delivery</a>
+      <a href="" target="_blank">Return and Exchange</a>
+    </div>
+    <div class="content_4">
+      <h4>NEWSLETTER</h4>
+      <p>Be the first to know about new<br />arrivals, sales & promos!</p>
+      <div class="f-mail">
+        <input type="email" placeholder="Your Email" />
+        <i class="bx bx-envelope"></i>
+      </div>
+      <hr />
+    </div>
+  </div>
+  <div class="f-design">
+    <div class="f-design-txt">
+      <p>Design and Code by Smart Mart</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ========== End footer Section ========== -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="module" src="../scripts/main.js"></script>
+<script>
+  // console.log("hello testing script")
+  for (var i = 0; i < document.links.length; i++) {
+if (document.links[i].href == document.URL) {
+    document.links[i].className += ' active';
+}
+}
+</script>
+
+</body>
+</html>

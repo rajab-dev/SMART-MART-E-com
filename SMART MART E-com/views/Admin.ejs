@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin panel</title>
+  <link rel="stylesheet" href="../stylesheets/style.css">
+  <link rel="icon" type="image/x-icon" href="../images/Brown Cart Online Shop Icon Modern Logo.png">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    .form {
+      max-width: 600px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+    input[type="text"],
+    input[type="file"],
+    textarea {
+      width: calc(100% - 12px);
+      padding: 8px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    input[type="file"] {
+      padding: 4px;
+    }
+    button[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <header class="section-navbar">
+    <section class="top_txt">
+      <div class="head container">
+        <div class="head_txt">
+          <!-- <p>Free shipping, 30-day return or refund guarantee.</p> -->
+          <h2 style="color: white;">Welcome: <strong style="color: rgb(253, 158, 35);"><%=  locals.username %></strong></h2>
+        </div>
+        <div class="sing_in_up">
+          <% if( locals.username ){   %>
+           <form action="http://localhost:3000/logout" method="post">
+            <button class="add-to-cart-button">Logout</button>
+          </form>
+        <%   } else{   %>
+           <a href="http://localhost:3000/login "><button class="add-to-cart-button">Login</button></a>
+          <a href="http://localhost:3000/register "><button class="add-to-cart-button">Register</button></a>
+       <%  }  %>
+          
+          
+        </div>
+        
+      </div>
+    </section>
+    <div class="container">
+      <div class="navbar-brand">
+        <a href="/">
+          <img
+          src="../images/smart5.png"
+            alt="Smart Mart eCommerce logo"
+            class="logo"
+            width="80%"
+            height="auto"
+          />
+        </a>
+      </div>
+      
+
+
+   
+    
+    
+
+
+
+      <nav class="navbar">
+        <ul>
+          <li class="nav-item">
+            <a href="/" class="nav-link">Home</a>
+          </li>
+          <%  if(locals.username==="admin"){   %>
+                 <li class="nav-item">
+            <a href="/admin-panel" class="nav-link">Admin</a>
+          </li>   
+        <%  }else{   %>
+          <li class="nav-item">
+            <a href="/my-orders" class="nav-link">My orders</a>
+          </li> 
+
+     <%   }  %>
+            
+          <!-- <li class="nav-item">
+            <a href="/all-products" class="nav-link">products</a>
+          </li> -->
+          <li class="nav-item">
+            <a href="/about" class="nav-link">about</a>
+          </li>
+          <li class="nav-item">
+            <a href="/contact-us" class="nav-link">contact</a>
+          </li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<div style="width: 100%; display: flex; justify-content: center; margin-top: 10px; " >
+  <h1 style="font-size: 40px; margin-top: 20px;">Admin Panel</h1>
+</div>
+   
+
+<div class="admincontent" style="display: flex; width: 100%;">
+  <form class="form" action="/admin-panel" method="post" enctype="multipart/form-data">
+
+    <div style="width: 100%; display: flex; justify-content: center; margin-top: 10px;" >
+      <h1>Add Products</h1>
+    </div>
+
+    <label style="margin-top: 10px;" for="">Title</label>
+    <input type="text" name="name" placeholder="Enter title for Product" required>
+    <label for="">Category</label>
+    <input type="text" name="category" placeholder="Enter Category Product" required>
+    <label for="">brand</label>
+    <input type="text" name="brand" placeholder="Enter brand for Product" required>
+    <label for="">price</label>
+    <input type="number" name="price" placeholder="Enter price for Product" required><br><br>
+    <label for="">stock</label>
+    <input type = "number" name="stock" placeholder="Enter stock for Product" required><br><br>
+    <label for="">image</label>
+    <input type="file" name="file" placeholder="Select image for Product" required>
+    <label for="">description</label>
+    <input type="text" name="description" placeholder="Enter description for Product" required>
+    <label for="">Detail description</label>
+    <textarea name="desDtl" cols="80" rows="30" required></textarea>
+    <button type="submit">ADD Product</button>
+  </form>
+
+   <div class="displayproducts" style="background-color: white; margin-top: 30px; margin-right: 100px; width: 50%; border: 1px solid lightgray; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); display: flex; flex-wrap: wrap; gap: 30px; padding: 30px;">
+    <div style="width: 100%; ">
+    <h1 style="text-align: center;">Delete Products</h1>
+     </div>
+    
+   <%  user.products.forEach(prod => {   %>
+    <div style="width: 455px; height: fit-content; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); border: 1px solid lightgray; padding: 20px; "> 
+    <img style="width: 100%;" src="../images/uploads/<%= prod.image %>" alt="">
+     <span style="font-size: 25px;"><%= prod.name   %></span><br>
+     <span style="font-size: 25px;">Rs.<%= prod.price   %></span><br>
+     <a href="/delete-prod/<%= prod.id %>"><button class="add-to-cart-button">Delete Product</button></a> 
+     </div>
+   
+  <% })  %>
+ 
+   </div> 
+    
+
+
+
+
+</div>
+
+<div style="width: 100%; display: flex; justify-content: center;">
+<div class="ordersmain" style="width: 90%; border: 1px solid lightgray; padding: 30px; display: flex; gap: 30px; margin-top: 50px; height: fit-content; border-radius: 8px; background-color: white;" >
+
+
+
+  <div class="myorders" style="width: 50%; ">
+    
+    <h1 style="text-align: center; margin-top: 20px;"> Messages <%= messages.length  %></h1>
+   
+  <%  messages.forEach(message => {  %>
+      <div style="width: 100%; padding: 20px;">
+      
+        <form class="form" style="width: 100%; max-width: none; background-color: transparent;  background-color: white; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);" >
+  
+          <div style="width: 100%; display: flex; justify-content: center; margin-top: 10px;" >
+          </div>
+          <label style="margin-top: 30px;" for=""> Name</label>
+          <input type="text" name="name" value="<%= message.name  %>" readonly >
+          <label for="">Email</label>
+          <input type="text" name="category"  value="<%= message.email  %>" readonly >
+          <label for="message">Message</label>
+          <textarea rows="5" name="message" value="<%= message.message  %>" readonly><%= message.message  %></textarea><br>
+          <label for="">Message Received at</label>
+          <input type="text" name="price" value="<%=message.createdAt.toDateString() %> <%= message.createdAt.toLocaleTimeString() %>" readonly><br><br>
+        </form>
+     </div>
+  <%   })     %>
+  
+  
+  </div>  
+
+
+
+<div class="myorders" style="width: 50%; " >
+   <h1 style="text-align: center; margin-top: 20px;">Received Orders <%= receivedOrder.length  %></h1>
+  <%  receivedOrder.forEach(custm => {  %>
+    
+  <div style="width: 100%; padding: 30px;">
+
+      
+      <form class="cod-form " style="background-color: white; max-width: none; width: 100%; padding: 30px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7); " >
+      <div style="width: 100%; border: 1px solid lightgray; border-radius: 8px; display: flex; justify-content: center; padding: 20px; ">
+      <img  style="width: 25%;" src="../images/uploads/<%= custm.product.image %>" alt="">
+      </div>
+      <label style="margin-top: 30px;" for="prdname">Product Name</label>
+      <input type="text" name="prdname" value="<%= custm.product.name  %>" readonly></input>
+  
+      <label style="margin-top: 10px;" for="prdprice">Total Price</label>      
+      <input type="text" name="prdprice" value="<%= custm.product.price  %>" readonly></input>
+
+      <label style="margin-top: 10px;" for="name">Customer Full Name</label>
+      <input type="text" id="name" name="name" readonly value="<%= custm.name %>">
+      
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" readonly value="<%= custm.email %>">
+      
+      <label style="margin-top: 20px;" for="phone">Phone Number +92</label>
+      <input type="tel" id="phone" name="phone" readonly value="+92<%= custm.phone %>">
+      
+      <label style="margin-top: 20px;" for="address">Delivery Address</label>
+      <textarea id="address" name="address" rows="4" readonly value=""><%= custm.address %></textarea>
+      
+      <label style="margin-top: 0px;" for="city">City</label>
+      <input type="text" id="city" name="city" readonly value="<%= custm.city %>">
+      
+      <label for="zip">Zip Code</label>
+      <input type="text" id="zip" name="zip" readonly value="<%= custm.zip %>">
+      <label for="">Order Received at</label>
+            <input type="text" name="price" value="<%=custm.createdAt.toDateString() %> <%= custm.createdAt.toLocaleTimeString() %>" readonly><br><br>
+    </form>
+  
+</div>
+<%   })     %>
+
+
+</div>  
+
+
+
+</div>
+</div>
+  <footer class="section-footer">
+    <div class="footer-container container">
+      <div class="content_1">
+        <img src="./images/smart5.png" alt="logo" />
+        <p>
+          Welcome to Smart Mart EcomStore, your ultimate destination for
+          cutting-edge gadgets!
+        </p>
+        <img src="https://i.postimg.cc/Nj9dgJ98/cards.png" alt="cards" />
+      </div>
+      <div class="content_2">
+        <h4>SHOPPING</h4>
+        <a href="#">Computer Store</a>
+        <a href="#">Laptop Store</a>
+        <a href="#">Accessories</a>
+        <a href="#">Sales & Discount</a>
+      </div>
+      <div class="content_3">
+        <h4>Experience</h4>
+        <a href="./contact.html">Contact Us</a>
+        <a href="" target="_blank">Payment Method</a>
+        <a href="" target="_blank">Delivery</a>
+        <a href="" target="_blank">Return and Exchange</a>
+      </div>
+      <div class="content_4">
+        <h4>NEWSLETTER</h4>
+        <p>Be the first to know about new<br />arrivals, sales & promos!</p>
+        <div class="f-mail">
+          <input type="email" placeholder="Your Email" />
+          <i class="bx bx-envelope"></i>
+        </div>
+        <hr />
+      </div>
+    </div>
+    <div class="f-design">
+      <div class="f-design-txt">
+        <p>Design and Code by Smart Mart</p>
+      </div>
+    </div>
+  </footer>
+  <script>
+    // console.log("hello testing script")
+    for (var i = 0; i < document.links.length; i++) {
+  if (document.links[i].href == document.URL) {
+      document.links[i].className += ' active';
+  }
+  }
+  </script>
+</body>
+</html>

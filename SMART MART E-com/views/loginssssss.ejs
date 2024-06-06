@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Mart Sign-in</title>
+    <link rel="stylesheet" href="../stylesheets/amazonsignin.css">
+    <link rel="icon" type="image/x-icon" href="../images/Brown Cart Online Shop Icon Modern Logo.png">
+</head>
+
+<body>
+    <div class="main">
+        <div class="navlogo"></div>
+        <div class="form">
+            <form  action="http://localhost:3000/login" method="post" >
+                <h1>Sign In</h1>
+                <label for="username">Username</label><br>
+                <input placeholder="Enter username" type="text" name="username" required><br><br>
+                <label for="password">Password</label><br>
+                <input placeholder="Enter password" type="password"  name="password" required>
+                <br><br>
+                <button>Continue</button>
+                <div class="terms">
+                    By continuing, you agree to Smart Mart's <a href="">conditions of Use</a> and <a href="">Privacy
+                        Notice</a><br><br>
+                    <a href="">Need Help?</a>
+                    
+                </div><br>
+            </form>
+        </div>
+    </div>
+<!-- second -->
+<div class="createaccount">
+    <p class="line">--------New to Smart Mart?--------</p>
+    <!-- <button class="create">Create your Smart Mart account</button> -->
+    <button class="create" onclick="window.location.href = '/register';">Create your Smart Mart account</button>
+</div>
+    <!-- sign in footer -->
+    <div class="signinfooter">
+        <div class="conditions">
+            <a class="condition" href="">Conditions of Use</a>
+            <a class="privacy" href="">Privacy Notice</a>
+            <a href="">Help</a>
+        </div>
+        <p class="license">© 1996-2024, smartmart.pk, Inc. or its affiliates</p>
+    </div>
+</body>
+
+</html>

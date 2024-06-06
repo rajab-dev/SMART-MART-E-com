@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Mart Checkout</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Jost:wght@300;400;500;700&family=Poppins:wght@200;300;400;600&family=Quicksand:wght@300;400;500;600;700&family=Urbanist:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../stylesheets/style.css" />
+    <link rel="icon" type="image/x-icon" href="../images/Brown Cart Online Shop Icon Modern Logo.png">
+   
+  </head>
+  <body>
+    <!-- ========== Start Navbar ========== -->
+    <header class="section-navbar">
+      <section class="top_txt">
+        <div class="head container">
+          <div class="head_txt">
+            <!-- <p>Free shipping, 30-day return or refund guarantee.</p> -->
+            <h2 style="color: white;">Welcome: <strong style="color: rgb(253, 158, 35);"><%=  locals.username %></strong></h2>
+          </div>
+          <div class="sing_in_up">
+            <% if( locals.username ){   %>
+             <form action="http://localhost:3000/logout" method="post">
+              <button class="add-to-cart-button">Logout</button>
+            </form>
+          <%   } else{   %>
+             <a href="http://localhost:3000/login "><button class="add-to-cart-button">Login</button></a>
+            <a href="http://localhost:3000/register "><button class="add-to-cart-button">Register</button></a>
+         <%  }  %>
+            
+            
+          </div>
+          
+        </div>
+      </section>
+      <div class="container">
+        <div class="navbar-brand">
+          <a href="/">
+            <img
+            src="../images/smart5.png"
+              alt="Smart Mart eCommerce logo"
+              class="logo"
+              width="80%"
+              height="auto"
+            />
+          </a>
+        </div>
+        
+
+
+     
+      
+      
+
+
+
+        <nav class="navbar">
+          <ul>
+            <li class="nav-item">
+              <a href="/" class="nav-link">Home</a>
+            </li>
+            <%  if(locals.username==="admin"){   %>
+                   <li class="nav-item">
+              <a href="/admin-panel" class="nav-link">Admin</a>
+            </li>   
+          <%  }else{   %>
+            <li class="nav-item">
+              <a href="/my-orders" class="nav-link">My orders</a>
+            </li> 
+
+       <%   }  %>
+              
+            <!-- <li class="nav-item">
+              <a href="/all-products" class="nav-link">products</a>
+            </li> -->
+            <li class="nav-item">
+              <a href="/about" class="nav-link">about</a>
+            </li>
+            <li class="nav-item">
+              <a href="/contact-us" class="nav-link">contact</a>
+            </li>
+            <li class="nav-item">
+              <a
+                href="/addToCart"
+                class="nav-link add-to-cart-button"
+                id="cartValue"
+              >
+                <i class="fa-solid fa-cart-shopping"> 0 </i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <!-- ========== End Navbar ========== -->
+
+    <section class="addToCartElement">
+      <div class="container">
+        <section>
+          <div id="productCartContainer"></div>
+        </section>
+
+        <section class="productCartTotalElem">
+          <div class="productCartTotalElement">
+            <p>Selected Offer Summary</p>
+            <div class="productOrderTotal">
+              <div>
+                <p>Sub Total:</p>
+                <p class="productSubTotal">0</p>
+              </div>
+              <div>
+                <p>Tax:</p>
+                <p class="productTax">Rs.50</p>
+              </div>
+              <hr />
+              <div>
+                <p>Final Total:</p>
+                <p class="productFinalTotal">0</p>
+              </div>
+              <div>
+                <button class="add-to-cart-button payment" style="width: 100%; ">
+                  Checkout
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- Template for a product -->
+    <template id="productCartTemplate">
+      <div class="cards" id="cardValue">
+        <article class="information [ card ]">
+          <div>
+            <span class="category"></span>
+          </div>
+          <div class="imageContainer">
+            <img class="productImage" src="../images/uploads/" alt="" />
+          </div>
+
+          <h2 class="productName"></h2>
+
+          <p class="productPrice"></p>
+
+          <div class="stockElement">
+            <button class="cartIncrement">+</button>
+            <p class="productQuantity" data-quantity="1">1</p>
+            <button class="cartDecrement">-</button>
+          </div>
+
+          <!-- <button class="add-to-cart-button">Add To Cart</button> -->
+          <div style="width: 100%; display: flex; flex-direction: column; gap: 10px;">
+          <a  href="/order/" style="text-align: center;" class="add-to-cart-button orderbtn">
+            Order
+          </a>
+         <a class="removefrom add-to-cart-button remove-to-cart-button" href="/removeFromCart/" style="text-align: center;">Remove</a>
+          </div>
+        </article>
+        
+      </div>
+    </template>
+
+    <!-- ========== Start footer Section ========== -->
+    <footer class="section-footer">
+      <div class="footer-container container">
+        <div class="content_1">
+          <img src="./images/smart5.png" alt="logo" />
+          <p>
+            Welcome to Smart Mart EcomStore, your ultimate destination for
+            cutting-edge gadgets!
+          </p>
+          <img src="https://i.postimg.cc/Nj9dgJ98/cards.png" alt="cards" />
+        </div>
+        <div class="content_2">
+          <h4>SHOPPING</h4>
+          <a href="#">Computer Store</a>
+          <a href="#">Laptop Store</a>
+          <a href="#">Accessories</a>
+          <a href="#">Sales & Discount</a>
+        </div>
+        <div class="content_3">
+          <h4>Experience</h4>
+          <a href="./contact.html">Contact Us</a>
+          <a href="" target="_blank">Payment Method</a>
+          <a href="" target="_blank">Delivery</a>
+          <a href="" target="_blank">Return and Exchange</a>
+        </div>
+        <div class="content_4">
+          <h4>NEWSLETTER</h4>
+          <p>Be the first to know about new<br />arrivals, sales & promos!</p>
+          <div class="f-mail">
+            <input type="email" placeholder="Your Email" />
+            <i class="bx bx-envelope"></i>
+          </div>
+          <hr />
+        </div>
+      </div>
+      <div class="f-design">
+        <div class="f-design-txt">
+          <p>Design and Code by Smart Mart </p>
+        </div>
+      </div>
+    </footer>
+    <!-- ========== End footer Section ========== -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="https://js.stripe.com/v3"></script>
+<script type="module" src="../scripts/showAddToCartCards.js"></script>
+    
+    
+    <script>
+      // console.log("hello testing script")
+      for (var i = 0; i < document.links.length; i++) {
+    if (document.links[i].href == document.URL) {
+        document.links[i].className += ' active';
+    }
+}
+    </script>
+  </body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+      
+    <link rel="stylesheet" href="../stylesheets/style.css" />
+    <link rel="icon" type="image/x-icon" href="../images/Brown Cart Online Shop Icon Modern Logo.png">
+    <title>SMART MART</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+      .form {
+        max-width: 600px;
+        margin: 20px auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      label {
+        display: block;
+        margin-bottom: 8px;
+      }
+      input[type="text"],
+      input[type="file"],
+      textarea {
+        width: calc(100% - 12px);
+        padding: 8px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      input[type="file"] {
+        padding: 4px;
+      }
+      button[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="section-navbar">
+      <section class="top_txt">
+        <div class="head container">
+          <div class="head_txt">
+            <!-- <p>Free shipping, 30-day return or refund guarantee.</p> -->
+            <h2 style="color: white;">Welcome: <strong style="color: rgb(253, 158, 35);"><%=  locals.username %></strong></h2>
+          </div>
+          <div class="sing_in_up">
+            <% if( locals.username ){   %>
+             <form action="http://localhost:3000/logout" method="post">
+              <button class="add-to-cart-button">Logout</button>
+            </form>
+          <%   } else{   %>
+             <a href="http://localhost:3000/login "><button class="add-to-cart-button">Login</button></a>
+            <a href="http://localhost:3000/register "><button class="add-to-cart-button">Register</button></a>
+         <%  }  %>
+            
+            
+          </div>
+          
+        </div>
+      </section>
+      <div class="container">
+        <div class="navbar-brand">
+          <a href="/">
+            <img
+            src="../images/smart5.png"
+              alt="Smart Mart eCommerce logo"
+              class="logo"
+              width="80%"
+              height="auto"
+            />
+          </a>
+        </div>
+        
+
+
+     
+      
+      
+
+
+
+        <nav class="navbar">
+          <ul>
+            <li class="nav-item">
+              <a href="/" class="nav-link">Home</a>
+            </li>
+            <%  if(locals.username==="admin"){   %>
+                   <li class="nav-item">
+              <a href="/admin-panel" class="nav-link">Admin</a>
+            </li>   
+          <%  }else{   %>
+            <li class="nav-item">
+              <a href="/my-orders" class="nav-link">My orders</a>
+            </li> 
+
+       <%   }  %>
+              
+            <!-- <li class="nav-item">
+              <a href="/all-products" class="nav-link">products</a>
+            </li> -->
+            <li class="nav-item">
+              <a href="/about" class="nav-link">about</a>
+            </li>
+            <li class="nav-item">
+              <a href="/contact-us" class="nav-link">contact</a>
+            </li>
+            <li class="nav-item">
+              <a
+                href="/addToCart"
+                class="nav-link add-to-cart-button"
+                id="cartValue"
+              >
+                <i class="fa-solid fa-cart-shopping"> </i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <h1 style="text-align: center; margin-top: 30px;">My Orders</h1>
+    
+    <div style="width: 100%; display: flex; justify-content: center; text-align: center; flex-wrap: wrap;">
+      <div class="ordersmain" style="width: 90%; border: 1px solid lightgray; padding: 30px; display: flex; gap: 30px; margin-top: 50px; height: fit-content; border-radius: 8px; background-color: white; flex-wrap: wrap;" >
+      
+
+    <div class="myorders" style="width: 100%; display: flex; flex-direction: row; flex-wrap: wrap;">
+    
+     
+    <%  
+    let orderIndex = 0;
+      orderedProducts.forEach(prod => {  %>
+        <div style="width: 50%; padding: 50px; min-width: 50%; ">
+        
+          <form class="form" style="width: 100%; max-width: none; background-color: transparent;  background-color: white; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);" >
+    
+            <div style="width: 100%; display: flex; justify-content: center; margin-top: 10px;" >
+            </div>
+            <div style="width: 100%; display: flex; justify-content: center; border: 1px solid lightgray; border-radius: 8px; padding: 10px;">
+          <img width="25%" src="../images/uploads/<%= prod.image   %>" alt="">
+             </div>
+            <label style="margin-top: 30px;" for="">Product Name</label>
+            <input type="text" name="name" value="<%= prod.name  %>" readonly >
+            <label for="">Vendor</label>
+            <input type="text" name="category"  value="<%= prod.user.username  %>" readonly >
+            <label for="">price</label>
+            <input type="number" name="price" value="<%= prod.price  %>" readonly><br><br>
+           
+            <% if (orderIndex < orders.length) { %>
+              <label for="">Order Placed at</label>
+              <input type="text" name="price" value="<%= orders[orderIndex].createdAt.toDateString() %> <%= orders[orderIndex].createdAt.toLocaleTimeString() %>" readonly><br><br>
+              <% 
+              orderIndex++;
+              } %>
+            
+          </form>
+          
+       </div>
+        <%   })     %>
+      
+
+    
+    
+    </div>  
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+    <!-- ========== Start footer Section ========== -->
+    <footer class="section-footer">
+      <div class="footer-container container">
+        <div class="content_1">
+          <img src="./images/smart5.png" alt="logo" />
+          <p>
+            Welcome to Smart Mart EcomStore, your ultimate destination for
+            cutting-edge gadgets!
+          </p>
+          <img src="https://i.postimg.cc/Nj9dgJ98/cards.png" alt="cards" />
+        </div>
+        <div class="content_2">
+          <h4>SHOPPING</h4>
+          <a href="#">Computer Store</a>
+          <a href="#">Laptop Store</a>
+          <a href="#">Accessories</a>
+          <a href="#">Sales & Discount</a>
+        </div>
+        <div class="content_3">
+          <h4>Experience</h4>
+          <a href="./contact.html">Contact Us</a>
+          <a href="" target="_blank">Payment Method</a>
+          <a href="" target="_blank">Delivery</a>
+          <a href="" target="_blank">Return and Exchange</a>
+        </div>
+        <div class="content_4">
+          <h4>NEWSLETTER</h4>
+          <p>Be the first to know about new<br />arrivals, sales & promos!</p>
+          <div class="f-mail">
+            <input type="email" placeholder="Your Email" />
+            <i class="bx bx-envelope"></i>
+          </div>
+          <hr />
+        </div>
+      </div>
+      <div class="f-design">
+        <div class="f-design-txt">
+          <p>Design and Code by Smart Mart</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ========== End footer Section ========== -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="../scripts/main.js"></script>
+    <script>
+      // console.log("hello testing script")
+      for (var i = 0; i < document.links.length; i++) {
+    if (document.links[i].href == document.URL) {
+        document.links[i].className += ' active';
+    }
+}
+    </script>
+  </body>
+</html>
+

@@ -1,0 +1,28 @@
+<div class="myorders" style="width: 50%; ">
+    
+  <h1 style="text-align: center; margin-top: 20px;">My Orders <%= orderedProducts.length  %></h1>
+ 
+<%  orderedProducts.forEach(prod => {  %>
+    <div style="width: 100%; padding: 20px;">
+    
+      <form class="form" style="width: 100%; max-width: none; background-color: transparent;  background-color: white; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);" >
+
+        <div style="width: 100%; display: flex; justify-content: center; margin-top: 10px;" >
+        </div>
+        <div style="width: 100%; display: flex; justify-content: center; border: 1px solid lightgray; border-radius: 8px; padding: 10px;">
+      <img width="25%" src="../images/uploads/<%= prod.image   %>" alt="">
+         </div>
+        <label style="margin-top: 30px;" for="">Product Name</label>
+        <input type="text" name="name" value="<%= prod.name  %>" readonly >
+        <label for="">Vendor</label>
+        <input type="text" name="category"  value="<%= prod.user.username  %>" readonly >
+        <label for="">price</label>
+        <input type="number" name="price" value="<%= prod.price  %>" readonly><br><br>
+        <label for="">Order Placed at</label>
+        <input type="text" name="price" value="<%=prod.createdAt.toDateString() %> <%= prod.createdAt.toLocaleTimeString() %>" readonly><br><br>
+      </form>
+   </div>
+<%   })     %>
+
+
+</div>  

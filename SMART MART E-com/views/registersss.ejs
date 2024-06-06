@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Mart Registration</title>
+    <link rel="stylesheet" href="../stylesheets/AmazonReg.css">
+    <link rel="icon" type="image/x-icon" href="../images/Brown Cart Online Shop Icon Modern Logo.png">
+</head>
+<body>
+    <div class="main">
+        <div class="navlogo"></div>
+         <div class="form">
+        <form action="http://localhost:3000/register"  method="post">
+            <h1>Create account</h1>
+                <label for="username" >User Name</label><br>
+                <input placeholder="Enter username" type="text" name="username" required><br><br>
+                <label for="fullname">Full Name</label><br>
+                <input placeholder="Enter Full name" type="text"  name="fullname" required><br><br>
+                <label for="password">Password</label><br>
+                <input placeholder="Atleast 6 characters" type="password" name="password" required>
+                <p class="password">Passwords must be atleast 6 characters</p><br>
+                <button>Continue</button>
+                <div class="terms">
+                    <p>By creating an account, you agree to Smart Mart's</p>
+                    <a href="">conditions of Use</a> and <a href="">Privacy Notice</a>
+                 </div>
+                 <div class="buying">
+                    <p>Buying for work?</p>
+                    <a href="">create a free business account</a>
+                 </div>
+                 <div class="already">
+                    Already have an account? <a href="/login">Sign in</a>
+                 </div>
+       </form>
+      </div>
+    </div>
+
+    <!-- sign in footer -->
+    <div class="signinfooter">
+        <div class="conditions">
+        <a  class="condition" href="" >Conditions of Use</a>
+               <a  class="privacy" href="">Privacy Notice</a>  
+                    <a href="">Help</a>
+                </div>
+        <p class="license">© 1996-2024, smartmart.pk, Inc. or its affiliates</p>  
+    </div>
+</body>
+</html>

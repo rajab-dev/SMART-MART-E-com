@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cash on Delivery</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="../images/Brown Cart Online Shop Icon Modern Logo.png">
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    /* Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+    /* Body Styles */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    /* Cash on Delivery Form Styles */
+    .cod-form {
+      background-color: #ffffff;
+     max-width: 750px;
+     min-width: 40%;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+    .cod-form:hover {
+      transform: translateY(-5px);
+    }
+    .cod-form h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #333333;
+      text-align: center;
+    }
+    .cod-form label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 16px;
+      color: #555555;
+    }
+    .cod-form input[type="text"],
+    .cod-form input[type="tel"],
+    .cod-form input[type="email"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: border-color 0.3s ease;
+    }
+    .cod-form input[type="text"]:focus,
+    .cod-form input[type="tel"]:focus,
+    .cod-form input[type="email"]:focus {
+      border-color: #007bff;
+    }
+    .cod-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      resize: none;
+      transition: border-color 0.3s ease;
+    }
+    .cod-form textarea:focus {
+      border-color: #007bff;
+    }
+    .cod-form button {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background-color: #007bff;
+      color: #ffffff;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .cod-form button:hover {
+      background-color: #0056b3;
+    }
+    /* Payment Icons */
+    .payment-icons {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .payment-icons i {
+      font-size: 36px;
+      color: #333333;
+      margin: 0 10px;
+      transition: color 0.3s ease;
+    }
+    .payment-icons i:hover {
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+
+<form class="cod-form"  action= "/order/<%= productid  %>" method="post" >
+  <h2>Cash on Delivery</h2>
+  <label for="name">Full Name</label>
+  <input type="text" id="name" name="name" placeholder="Your Full Name" required>
+  
+  <label for="email">Email</label>
+  <input type="email" id="email" name="email" placeholder="Your Email" required>
+  
+  <label for="phone">Phone Number +92</label>
+  <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
+  
+  <label for="address">Delivery Address</label>
+  <textarea id="address" name="address" rows="4" placeholder="Your Delivery Address" required></textarea>
+  
+  <label for="city">City</label>
+  <input type="text" id="city" name="city" placeholder="Your City" required>
+  
+  <label for="zip">Zip Code</label>
+  <input type="text" id="zip" name="zip" placeholder="Your Zip Code" required>
+  
+  <button type="submit">Place Order</button>
+  
+  <div class="payment-icons">
+    <i class="fab fa-cc-visa"></i>
+    <i class="fab fa-cc-mastercard"></i>
+    <i class="fab fa-cc-discover"></i>
+    <i class="fab fa-cc-amex"></i>
+    <i class="fab fa-cc-paypal"></i>
+  </div>
+</form>
+
+</body>
+</html>
